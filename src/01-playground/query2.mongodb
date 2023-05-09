@@ -1,0 +1,5 @@
+use("sample_training")
+db.trips.find({tripduration: 525})
+
+/* en este documento se abordaran los operadores de consulta y 
+operadores de proyeccion */

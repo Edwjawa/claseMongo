@@ -1,19 +1,65 @@
-// nombre de la base de datos. Se pone el el use para  
+/*
+En este documento se abordaran las consultas  de documentos  
+ */
+
+
+
+ 
 use ("sample_training")
-//mostrar todos los documentos presentes en zips 
-// db.zips.find({})
+
+
+/* 
+Para la seleccion de todos los documentos en una colección 
+se utiliza el método find 
+sintaxis -> db.nombre_coleccion.find({})
+
+// db.zips.find( { } )
+*/
+
+/* 
+Para implementar un filtro en la selección de documentos
+se utiliza dentro de las llaves "{}" la condicion especificidad
+sintaxis ->  db.nombre_coleccion.find({ field1 : values1 })
+
+// db.zips.find({state:"NY"})
+
+*/
+
+/* 
+
+*/
 
 // mostrar el numero de documentos que contiene companies
-db.companies.find({}).count()
+// db.companies.find({}).count()
 
 // mostrar todos los documentos en zips que coinciden con la condicion status : "NY"
+
+// Selectores (operadores) de consulta y Operadores de Proyección
+//
+// Selectores de Comparación  
+
+// 1 $eq -> Devuelve un valores especificos a un valor especifico
+// sintaxis -> .find({field:{$eq:<value>}})
+// el operedor .find({field:{$eq:<value>}}) es equivalente a  .find({field:value})
+// db.companies.find({name: {$eq:"CBS"}})
+// db.companies.find({name: "CBS"})
+
+// ----------------------------
+
+// 2. $gt -> Devuelve los valoores mayores a
+// sintaxis -> 
+
+
+// db.grades.find({student_id:1})
+
 // db.zips.find({state:"NY"})
 
-// db.companies.find({name:"CBS"})
-// db.grades.find({student_id:1})
 // db.zips.find({state:"NY"})
+
 // db.zips.find({state:"NY"})
+
 // db.zips.find({state:"NY"})
+
 // db.zips.find({state:"NY"})
-// db.zips.find({state:"NY"})
+
 // db.zips.find({state:"NY"})
