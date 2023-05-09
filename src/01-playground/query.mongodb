@@ -1,1 +1,19 @@
+// nombre de la base de datos. Se pone el el use para  
 use ("sample_training")
+//mostrar todos los documentos presentes en zips 
+// db.zips.find({})
+
+// mostrar el numero de documentos que contiene companies
+db.companies.find({}).count()
+
+// mostrar todos los documentos en zips que coinciden con la condicion status : "NY"
+// db.zips.find({state:"NY"})
+
+// db.companies.find({name:"CBS"})
+// db.grades.find({student_id:1})
+// db.zips.find({state:"NY"})
+// db.zips.find({state:"NY"})
+// db.zips.find({state:"NY"})
+// db.zips.find({state:"NY"})
+// db.zips.find({state:"NY"})
+// db.zips.find({state:"NY"})
