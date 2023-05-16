@@ -4,62 +4,107 @@ En este documento se abordaran las consultas  de documentos
 
 
 
- 
+
 use ("sample_training")
 
 
 /* 
+1)
 Para la seleccion de todos los documentos en una colección 
 se utiliza el método find 
 sintaxis -> db.nombre_coleccion.find({})
 
-// db.zips.find( { } )
 */
 
+// db.zips.find( { } )
+
+
 /* 
+2)
+Para mostrar el número de documentos en una coleccion que cumpla con alguna condición
+se utiliza el método .count()
+
+*/
+
+// db.zips.find({}).count()
+
+
+/* 
+3)
 Para implementar un filtro en la selección de documentos
-se utiliza dentro de las llaves "{}" la condicion especificidad
+se utiliza dentro de las llaves "{}" la condicion de especificidad
 sintaxis ->  db.nombre_coleccion.find({ field1 : values1 })
 
+*/
+
 // db.zips.find({state:"NY"})
 
-*/
 
 /* 
+4)
+Para implementar una consulta que acepte un valor u otro para un un mismo campo 
+se utiliza el operador $in. Este devuelve las consultas qeu conindan con el primer valor
+encontrado alfabeticamente.
+sintaxis ->  db.nombre_coleccion.find({ field1 :{ operador: [values1, values2] }})
+*/
+
+// db.zips.find({state: {$in:[ "LA", "AL"]}})
+
+
+/* 
+5)
+Para implementar una consulta compuesta que cumplan varias condiciones según distintos campos de una coleccion
+Se utiliza la coma "," como separador de la condiciones dentro de los corchetes. 
+Sintaxis  ->  db.nombre_coleccion.find({ field1 : values1, field2 : values2 })
+
+Dentro de estos tambien se admiten operadores:
+Sintaxis  ->  db.nombre_coleccion.find({ field1 : values1, field2 :{ operador: values2 })
+En el siguiente se utilizara el operador de comparación menor que -> $lt
 
 */
 
-// mostrar el numero de documentos que contiene companies
-// db.companies.find({}).count()
+// db.zips.find({state: "LA", pop: {$lt: 4905}})
 
-// mostrar todos los documentos en zips que coinciden con la condicion status : "NY"
+/* 
+6)
+En el siguiente utilizaremos el operador de comparacion mayor que -> &gt
+*/
 
-// Selectores (operadores) de consulta y Operadores de Proyección
-//
-// Selectores de Comparación  
-
-// 1 $eq -> Devuelve un valores especificos a un valor especifico
-// sintaxis -> .find({field:{$eq:<value>}})
-// el operedor .find({field:{$eq:<value>}}) es equivalente a  .find({field:value})
-// db.companies.find({name: {$eq:"CBS"}})
-// db.companies.find({name: "CBS"})
-
-// ----------------------------
-
-// 2. $gt -> Devuelve los valoores mayores a
-// sintaxis -> 
+// db.zips.find({state: "LA", pop: {$gt: 5905}})
 
 
-// db.grades.find({student_id:1})
+/* 
+7)
+Para implementar una consulta compuesta que cumpla con al menos una condición según distintos campos de la colección
+Se utiliza el operador logico $or
+Sintaxis  ->  db.nombre_coleccion.find({ operador: [{field1 : values1}, {field2 : value2}])
+En el siguiente se utilizará el operador de comparacion -> $lt
 
-// db.zips.find({state:"NY"})
+*/
 
-// db.zips.find({state:"NY"})
+// db.zips.find({$or: [ {state: "LA", pop: {$lt: 5905}  } ] } )
 
-// db.zips.find({state:"NY"})
 
-// db.zips.find({state:"NY"})
+/* 
+8)
+Para realizar una consulta que cumpla con la condicion de que el primer caracter inicie con el carácter L
+Se utiliza el operador /^L/
+*/
 
-// db.zips.find({state:"NY"})
+// db.zips.find({state: /^A/ })
 
-// db.zips.find({state:"NY"})
+/* 
+9)
+Para realizar una consulta que cumpla con la condición compleja de que el status es igual a LA y que o el 
+el pop sea menor que 5905 o  la city inicie con KE
+ */
+
+// db.zips.find({state: "LA", $or: [ { pop: {$lt: 5905}}, {city: /^KE/  } ] } )
+
+/* 
+10)
+Para realizar una consulta que cumpla con la condición compleja de que el status es igual a LA, que o el 
+el pop sea menor que 5905 y que  la city inicie con KE
+ */
+
+db.zips.find({state: "LA",  pop: {$lt: 5905}, city: /^KE/  } )
